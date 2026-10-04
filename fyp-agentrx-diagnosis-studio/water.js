@@ -9,7 +9,7 @@
  const clamp=value=>Math.max(0,Math.min(1,value));
  let progress=clamp(parseFloat(getComputedStyle(scene).getPropertyValue('--dive-p'))||0);
  let reduced=preference.matches,visible=false,ready=false,failed=false,frame=0;
- let lastDraw=-Infinity,elapsed=0,lastTick=0,width=1,height=1,dirtySize=true;
+ let elapsed=0,lastTick=0,width=1,height=1,dirtySize=true,waterHasPixels=false;
  let gl,program,texture,buffer,observer,loadTimer,surfaceRenderer;
  canvas.style.visibility='hidden';
  function stop(){if(frame)cancelAnimationFrame(frame);frame=0;lastTick=0;}
@@ -170,7 +170,7 @@
       loaded=true;
      }catch(_error){dispose();}
     };
-    photo.onerror=dispose;photo.src='./assets/surface-v3.png';
+    photo.onerror=dispose;photo.src=scene.dataset.surfaceImage||'./assets/surface-v3.png';
     return {hide,dispose,draw(){
      if(!loaded||dead)return;
      try{
@@ -184,25 +184,28 @@
   surfaceRenderer=createSurfaceRenderer();
   function resize(){
    dirtySize=false;
-   const bounds=canvas.getBoundingClientRect(),ratio=Math.min(window.devicePixelRatio||1,1.5);
+   const bounds=canvas.getBoundingClientRect();
+   const ratio=Math.min(window.devicePixelRatio||1,1.25,Math.sqrt(2000000/Math.max(1,bounds.width*bounds.height)));
    width=Math.max(1,Math.round(bounds.width*ratio));height=Math.max(1,Math.round(bounds.height*ratio));
    if(canvas.width!==width||canvas.height!==height){canvas.width=width;canvas.height=height;}
    gl.viewport(0,0,width,height);gl.uniform2f(uniforms.uSize,width,height);
   }
   function draw(){
    if(dirtySize)resize();
-   gl.uniform1f(uniforms.uProgress,progress);gl.uniform1f(uniforms.uTime,elapsed);
-   gl.clear(gl.COLOR_BUFFER_BIT);gl.drawArrays(gl.TRIANGLES,0,6);
-   if(surfaceRenderer)surfaceRenderer.draw();
+   // Render only layers that can contribute pixels at this depth.
+   if(progress>0.08){
+    gl.uniform1f(uniforms.uProgress,progress);gl.uniform1f(uniforms.uTime,elapsed);
+    gl.clear(gl.COLOR_BUFFER_BIT);gl.drawArrays(gl.TRIANGLES,0,6);waterHasPixels=true;
+   }else if(waterHasPixels){gl.clear(gl.COLOR_BUFFER_BIT);waterHasPixels=false;}
+   if(surfaceRenderer&&progress<0.50)surfaceRenderer.draw();
   }
   function tick(now){
    frame=0;
    if(!ready||failed||reduced||!visible||document.hidden)return;
    if(lastTick)elapsed+=Math.min((now-lastTick)/1000,0.1);
    lastTick=now;
-   if(now-lastDraw>=1000/30){
-    try{draw();lastDraw=now;}catch(_error){fallback();return;}
-   }
+   // Follow the display's RAF cadence so water and HTML do not run at 30/60 fps.
+   try{draw();}catch(_error){fallback();return;}
    frame=requestAnimationFrame(tick);
   }
   function sync(){
@@ -226,8 +229,6 @@
    if(event.detail&&typeof event.detail.reducedMotion==='boolean')reduced=event.detail.reducedMotion;
    if(!frame)sync();
   });
-  // Read after dive.js's scheduled scroll update when no custom event is used.
-  window.addEventListener('scroll',()=>{if(visible&&!failed)requestAnimationFrame(updateFromStyle);},{passive:true});
   window.addEventListener('resize',()=>{dirtySize=true;if(!frame)sync();},{passive:true});
   document.addEventListener('visibilitychange',sync);
   preference.addEventListener('change',()=>{reduced=preference.matches;updateFromStyle();sync();});
@@ -258,6 +259,6 @@
   };
   image.onerror=fallback;
   loadTimer=setTimeout(fallback,20000);
-  image.src='./assets/underwater-v3.png';
+  image.src=scene.dataset.underwaterImage||'./assets/underwater-v3.png';
  }catch(_error){fallback();}
 })();
