@@ -1,8 +1,13 @@
 # Campus photography attribution
 
+## Current cinematic opening
+
+The original portfolio layout uses three existing photographs: University Street (`hku-university-street-gallery.webp`) and Centennial Campus (`hku-centennial-campus.webp`) from the HKU campus photo essay credited below; and Main Building (`hku-main-building-sunlit.webp`) by Ka-Fai,So, under CC BY-SA 3.0 as detailed below. CSS crops, colour treatment, camera motion and a scroll-driven frame are presentation effects. These images are not claimed to be photographs taken by Bai Yu.
+
+
 The homepage carousel uses nine locally optimized copies of photographs supplied by the site owner. The photographs correspond to the campus tour images presented on the University of Hong Kong Development & Alumni Affairs Office's Class Reunion page.
 
-## Current homepage carousel
+## Earlier homepage carousel
 
 The carousel contains:
 
