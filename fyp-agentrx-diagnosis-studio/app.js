@@ -40,3 +40,19 @@ document.querySelectorAll('[data-case]').forEach(b=>b.addEventListener('click',(
 byId('explain-button').setAttribute('aria-controls','case-explanation');
 byId('explain-button').addEventListener('click',()=>{explained=!explained;const item=cases[activeCase],panel=byId('case-explanation');panel.hidden=!explained;byId('explain-button').textContent=explained?'收起预设讲解 ↑':'展开预设讲解 →';byId('explain-button').setAttribute('aria-expanded',String(explained));if(explained){const h=document.createElement('h4'),p=document.createElement('p'),small=document.createElement('small');h.textContent=item.heading;p.textContent=item.explanation;small.textContent='人工编写的预设讲解 · 没有运行模型 · 不属于实验结果';panel.replaceChildren(h,p,small);}document.querySelectorAll('.trace-button').forEach((b,i)=>b.classList.toggle('key-step',explained&&item.key===i));});
 renderCase(0);
+
+// Keep the sidebar aligned with the section currently being read.
+const sectionLinks=[...document.querySelectorAll('.primary-nav a')];
+if ('IntersectionObserver' in window) {
+ const visibleSections=new Set();
+ const sectionObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>entry.isIntersecting?visibleSections.add(entry.target.id):visibleSections.delete(entry.target.id));
+  const current=sectionLinks.find(link=>visibleSections.has(link.hash.slice(1)));
+  if (!current) return;
+  sectionLinks.forEach(link=>{
+   link.classList.toggle('active',link===current);
+   if(link===current)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');
+  });
+ },{rootMargin:'-5% 0px -55% 0px',threshold:0});
+ sectionLinks.forEach(link=>{const section=document.getElementById(link.hash.slice(1));if(section)sectionObserver.observe(section);});
+}
