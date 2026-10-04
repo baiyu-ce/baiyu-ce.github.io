@@ -4,7 +4,7 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Bai Yu 的多智能体故障诊断 FYP：AgentRx 方法、开发实验与可交互的证据分析案例。">
   <meta name="theme-color" content="#061c2b"><title>TRACE · 多智能体故障诊断 | Bai Yu FYP</title>
-  <link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./ocean.css"><script src="./app.js" defer></script><script src="./dive.js" defer></script>
+  <link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./ocean.css"><script src="./app.js" defer></script><script src="./dive.js" defer></script><script src="./water.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#question">跳到正文</a>
@@ -13,8 +13,9 @@
 <section id="dive" class="dive" aria-labelledby="hero-title">
   <h1 id="hero-title" class="sr-only">TRACE：从失败的表象，下潜到关键证据。多智能体故障诊断研究。</h1>
   <div class="dive-stage">
-    <div class="dive-world" aria-hidden="true"><img class="dive-photo" src="./assets/ocean-depth-v2.png" width="1024" height="1536" alt="" fetchpriority="high" decoding="async"><div class="dive-shade"></div><div class="dive-deep"></div><div class="dive-light"></div><div class="dive-specks"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-    <div class="dive-story story-surface" aria-hidden="true"><p class="scene-kicker">TRACE / A JOURNEY INTO AGENT FAILURES</p><div class="ocean-title"><span>BELOW</span><em>the surface.</em></div><p class="scene-subtitle">答案出错之前，发生了什么？</p><p class="scene-description">向下追溯多智能体协作，寻找失败开始的那一步。</p></div>
+    <div class="dive-world" aria-hidden="true"><img class="dive-photo" src="./assets/surface-v3.png" width="1672" height="941" alt="" fetchpriority="high" decoding="async"><canvas class="surface-canvas"></canvas><div class="dive-shade"></div></div>
+    <div class="dive-story story-surface" aria-hidden="true"><p class="scene-kicker">TRACE / MULTI-AGENT FAILURE DIAGNOSIS</p><div class="ocean-title"><span>Closer to</span><em>the cause.</em></div><p class="scene-subtitle">潜入表象之下。</p><p class="scene-description">追溯多智能体协作，<br>寻找失败开始的那一步。</p><span class="surface-line"></span></div>
+    <div class="underwater-fallback" aria-hidden="true"></div><canvas class="water-canvas" aria-hidden="true"></canvas><div class="dive-deep" aria-hidden="true"></div>
     <div class="dive-story story-evidence" aria-hidden="true"><div><p class="scene-kicker">01 — GO BEYOND THE SYMPTOM</p><h2>表面是症状。<br><em>往下，才是证据。</em></h2><p>有的错误已经恢复，<br>有的偏差却一直传递到了最后。</p></div><div class="ocean-trace"><span class="trace-caption">虚构轨迹示意</span><div><small>STEP 01</small><strong>工具请求超时</strong><span>后续已恢复</span></div><div class="trace-critical"><small>STEP 03</small><strong>错误解释金额单位</strong><span>未恢复的偏差</span></div><div><small>STEP 05</small><strong>最终答案出错</strong><span>后续症状</span></div></div></div>
     <div class="dive-story story-origin" aria-hidden="true"><p class="scene-kicker">02 — FOLLOW THE EVIDENCE</p><h2>找到<br><em>关键的那一步。</em></h2><p>让每一个诊断，都能回到它的证据。</p><span class="origin-line"></span></div>
     <div class="depth-rail" aria-hidden="true"><span>SURFACE</span><div class="depth-track"><i></i></div><span>EVIDENCE</span><b id="depth-progress">00</b></div>
