@@ -1,17 +1,12 @@
 'use strict';
-const methods=[
+const methodsZh=[
  ['01 / TRACE','先还原每一步发生了什么','将任务、智能体消息、工具调用和返回信息整理成有序步骤。保留步骤编号，使每一条后续引用都能回到原位置。','工具返回“amount_minor: 129900，unit: 分”。这条记录必须与智能体随后输出的“129900 元”分开保存。','输入里的答案标签应剔除，避免把参考答案提前泄漏给诊断过程。'],
  ['02 / CONSTRAINTS','把模糊要求写成可检查的问题','围绕任务要求与工具语义提出检查标准，明确一个步骤需要满足什么条件，而不是只让模型自由评论整段轨迹。','金额输出必须采用用户要求的单位；如果工具返回的是“分”，输出“元”前应进行换算。','约束也可能不准确，需要检查它是否适用于当前任务。'],
  ['03 / VERIFICATION','区分通过、违反与不确定','结合该步可见的轨迹前缀，检查约束是否得到满足，并要求提供指向原记录的证据。','CLEAR_PASS：单位正确；CLEAR_FAIL：记录明确显示单位错误；UNCLEAR：记录不足以判断单位。','不能用未来步骤的信息为当前步骤补充它当时不知道的事实。'],
  ['04 / REFLECTION','检查证据质量，再筛选信息','反思检查结果是否受到错误约束、证据缺失或解释歧义影响。筛选能减少噪声，也可能移除后续诊断有用的弱证据。','本项目正在探索：额外保留 UNCLEAR 检查信息，是否会改变后续诊断？','反思与筛选是已有基线的一部分，本项目没有将其宣称为新方法。'],
  ['05 / DIAGNOSIS','把关键步骤、原因与引用连起来','综合轨迹与检查信息，给出关键失败步骤、失败类别、解释和引用。人可以按步骤回看证据，复核结论。','如果第一步的超时已恢复，而第三步的单位错误一直未纠正，应重点检查第三步，而不是只看超时或最终答案。','“引用文字存在”只说明引用能匹配，不证明解释一定正确。']
 ];
-document.querySelectorAll('[data-method]').forEach(button=>button.addEventListener('click',()=>{
- const item=methods[Number(button.dataset.method)];
- document.querySelectorAll('[data-method]').forEach(b=>{const active=b===button;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
- ['method-label','method-title','method-body','method-example','method-limit'].forEach((id,i)=>document.getElementById(id).textContent=item[i]);
-}));
-const cases=[
+const casesZh=[
  {title:'重试之后，还算关键失败吗？',key:null,steps:[
   ['工具请求超时','检索工具','检索请求：价格列表\n工具返回：timeout','先保留这个现象，再检查后续是否恢复。'],
   ['重试成功','检索工具','重试返回：商品 A，价格 1299 元\n状态：success','错误可以被恢复。一次超时不自动等于最终失败的根因。'],
@@ -32,14 +27,123 @@ const cases=[
   ['汇总中止','调度智能体','没有取得报告内容，本次汇总停止。','可以确认汇总中止；最初失败的具体原因仍需要额外证据。']
  ],heading:'证据支持疑点，但还不支持唯一根因。',explanation:'“缺少保存记录”不能直接证明从未保存。可以指出第 2 步的成功宣称缺乏可见支撑，但确定根因还需要保存返回值、实际路径与文件状态等信息。这个案例适合保留 UNCLEAR，而不是强行给出确定答案。'}
 ];
-let activeCase=0,selectedStep=0,explained=false;
+let activeMethod=0,activeCase=0,selectedStep=0,explained=false,language='zh';
 const byId=id=>document.getElementById(id);
-function selectStep(index){selectedStep=index;const step=cases[activeCase].steps[index];byId('selected-label').textContent='SELECTED STEP / '+String(index+1).padStart(2,'0');byId('selected-title').textContent=step[0];byId('selected-log').textContent=step[2];byId('selected-hint').textContent=step[3];document.querySelectorAll('.trace-button').forEach((b,i)=>{b.classList.toggle('active',i===index);b.setAttribute('aria-pressed',String(i===index));});}
-function renderCase(index){activeCase=index;selectedStep=0;explained=false;const item=cases[index];byId('case-title').textContent=item.title;byId('case-count').textContent=item.steps.length+' STEPS';byId('trace-steps').replaceChildren();document.querySelectorAll('[data-case]').forEach(b=>{const active=Number(b.dataset.case)===index;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});item.steps.forEach((step,i)=>{const li=document.createElement('li'),button=document.createElement('button'),number=document.createElement('span'),body=document.createElement('div'),title=document.createElement('strong'),role=document.createElement('small');button.type='button';button.className='trace-button';number.textContent=String(i+1).padStart(2,'0');title.textContent=step[0];role.textContent=step[1];body.append(title,role);button.append(number,body);button.addEventListener('click',()=>selectStep(i));li.append(button);byId('trace-steps').append(li);});byId('case-explanation').hidden=true;byId('case-explanation').replaceChildren();byId('explain-button').textContent='展开预设讲解 →';byId('explain-button').setAttribute('aria-expanded','false');selectStep(0);}
-document.querySelectorAll('[data-case]').forEach(b=>b.addEventListener('click',()=>renderCase(Number(b.dataset.case))));
+const copy=window.TRACE_COPY||{};
+const english=window.TRACE_DYNAMIC;
+const translatedNodes=[...document.querySelectorAll('[data-i18n]')].map(node=>({node,key:node.dataset.i18n,zh:node.innerHTML}));
+const translatedLabels=[...document.querySelectorAll('[data-i18n-aria-label]')].map(node=>({node,key:node.dataset.i18nAriaLabel,zh:node.getAttribute('aria-label')}));
+const originalTitle=document.title;
+const description=document.querySelector('meta[name="description"]');
+const originalDescription=description.content;
+const canTranslate=!!english&&Object.keys(copy).length>0;
+const methodData=()=>language==='en'?english.methods:methodsZh;
+const caseData=()=>language==='en'?english.cases:casesZh;
+const text=(zh,en)=>language==='en'?en:zh;
+
+function renderMethod(index){
+ activeMethod=index;
+ const item=methodData()[index];
+ document.querySelectorAll('[data-method]').forEach(button=>{
+  const active=Number(button.dataset.method)===index;
+  button.classList.toggle('active',active);
+  button.setAttribute('aria-pressed',String(active));
+ });
+ ['method-label','method-title','method-body','method-example','method-limit'].forEach((id,i)=>byId(id).textContent=item[i]);
+}
+document.querySelectorAll('[data-method]').forEach(button=>button.addEventListener('click',()=>renderMethod(Number(button.dataset.method))));
+
+function selectStep(index){
+ selectedStep=index;
+ const step=caseData()[activeCase].steps[index];
+ byId('selected-label').textContent=text('当前步骤 / ','SELECTED STEP / ')+String(index+1).padStart(2,'0');
+ byId('selected-title').textContent=step[0];
+ byId('selected-log').textContent=step[2];
+ byId('selected-hint').textContent=step[3];
+ document.querySelectorAll('.trace-button').forEach((button,i)=>{
+  button.classList.toggle('active',i===index);
+  button.setAttribute('aria-pressed',String(i===index));
+ });
+}
+function renderExplanation(){
+ const item=caseData()[activeCase],panel=byId('case-explanation');
+ panel.hidden=!explained;
+ byId('explain-button').textContent=explained?text('收起预设讲解 ↑','Hide explanation ↑'):text('展开预设讲解 →','Show explanation →');
+ byId('explain-button').setAttribute('aria-expanded',String(explained));
+ panel.replaceChildren();
+ if(explained){
+  const heading=document.createElement('h4'),body=document.createElement('p'),note=document.createElement('small');
+  heading.textContent=item.heading;
+  body.textContent=item.explanation;
+  note.textContent=text('人工编写的预设讲解 · 没有运行模型 · 不属于实验结果','Manually written explanation · No model run · Not an experimental result');
+  panel.append(heading,body,note);
+ }
+ document.querySelectorAll('.trace-button').forEach((button,i)=>button.classList.toggle('key-step',explained&&item.key===i));
+}
+function renderCase(index,preserveSelection=false){
+ activeCase=index;
+ if(!preserveSelection){selectedStep=0;explained=false;}
+ const item=caseData()[index];
+ byId('case-title').textContent=item.title;
+ byId('case-count').textContent=item.steps.length+text(' 个步骤',' STEPS');
+ byId('trace-steps').replaceChildren();
+ document.querySelectorAll('[data-case]').forEach(button=>{
+  const active=Number(button.dataset.case)===index;
+  button.classList.toggle('active',active);
+  button.setAttribute('aria-pressed',String(active));
+ });
+ item.steps.forEach((step,i)=>{
+  const li=document.createElement('li'),button=document.createElement('button'),number=document.createElement('span'),body=document.createElement('div'),title=document.createElement('strong'),role=document.createElement('small');
+  button.type='button';button.className='trace-button';
+  number.textContent=String(i+1).padStart(2,'0');title.textContent=step[0];role.textContent=step[1];
+  body.append(title,role);button.append(number,body);
+  button.addEventListener('click',()=>selectStep(i));li.append(button);byId('trace-steps').append(li);
+ });
+ selectStep(selectedStep);
+ renderExplanation();
+}
+document.querySelectorAll('[data-case]').forEach(button=>button.addEventListener('click',()=>renderCase(Number(button.dataset.case))));
 byId('explain-button').setAttribute('aria-controls','case-explanation');
-byId('explain-button').addEventListener('click',()=>{explained=!explained;const item=cases[activeCase],panel=byId('case-explanation');panel.hidden=!explained;byId('explain-button').textContent=explained?'收起预设讲解 ↑':'展开预设讲解 →';byId('explain-button').setAttribute('aria-expanded',String(explained));if(explained){const h=document.createElement('h4'),p=document.createElement('p'),small=document.createElement('small');h.textContent=item.heading;p.textContent=item.explanation;small.textContent='人工编写的预设讲解 · 没有运行模型 · 不属于实验结果';panel.replaceChildren(h,p,small);}document.querySelectorAll('.trace-button').forEach((b,i)=>b.classList.toggle('key-step',explained&&item.key===i));});
-renderCase(0);
+byId('explain-button').addEventListener('click',()=>{explained=!explained;renderExplanation();});
+
+function preferredLanguage(){
+ const fromUrl=new URL(location.href).searchParams.get('lang');
+ if(fromUrl==='en'||fromUrl==='zh')return fromUrl;
+ try{if(localStorage.getItem('trace-language')==='en')return 'en';}catch{/* Storage is optional. */}
+ return 'zh';
+}
+function setLanguage(next,{remember=false,keepPosition=false}={}){
+ if(next!=='zh'&&next!=='en')return;
+ if(next==='en'&&!canTranslate)next='zh';
+ // Keep the section in view while translated paragraphs change its height.
+ const sections=[...document.querySelectorAll('.portal-main > section')];
+ const anchor=keepPosition?sections.filter(section=>section.getBoundingClientRect().top<=120).at(-1):null;
+ const offset=anchor?Math.max(0,(scrollY-(anchor.getBoundingClientRect().top+scrollY))/anchor.offsetHeight):0;
+ language=next;
+ translatedNodes.forEach(({node,key,zh})=>{
+  // Trusted, versioned page copy only; never user or model input.
+  node.innerHTML=next==='en'?(copy[key]??zh):zh;
+ });
+ translatedLabels.forEach(({node,key,zh})=>node.setAttribute('aria-label',next==='en'?(copy[key]??zh):zh));
+ document.documentElement.lang=next==='en'?'en':'zh-Hans';
+ document.title=next==='en'?copy['page.title']||originalTitle:originalTitle;
+ description.content=next==='en'?copy['page.description']||originalDescription:originalDescription;
+ document.querySelectorAll('[data-language]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.language===next)));
+ renderMethod(activeMethod);
+ renderCase(activeCase,true);
+ if(remember){
+  try{localStorage.setItem('trace-language',next);}catch{/* Switching also works with storage blocked. */}
+  const url=new URL(location.href);url.searchParams.set('lang',next);
+  history.replaceState(null,'',url);
+ }
+ if(anchor)window.scrollTo({top:anchor.getBoundingClientRect().top+scrollY+offset*anchor.offsetHeight,behavior:'instant'});
+}
+document.querySelectorAll('[data-language]').forEach(button=>{
+ if(button.dataset.language==='en'&&!canTranslate)button.disabled=true;
+ button.addEventListener('click',()=>setLanguage(button.dataset.language,{remember:true,keepPosition:true}));
+});
+addEventListener('popstate',()=>setLanguage(preferredLanguage(),{keepPosition:true}));
+setLanguage(preferredLanguage());
 
 // Keep the sidebar aligned with the section currently being read.
 const sectionLinks=[...document.querySelectorAll('.primary-nav a')];

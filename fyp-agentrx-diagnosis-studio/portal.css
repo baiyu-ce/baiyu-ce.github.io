@@ -6,6 +6,14 @@ body{font-family:"Segoe UI","Microsoft YaHei","PingFang SC",sans-serif;font-size
 .portal-brand{display:flex;align-items:center;gap:13px;color:inherit;font-size:36px;line-height:1.25;font-weight:600;letter-spacing:-1.5px}
 .brand-mark{border:1px solid #96af9760;width:52px;height:57px;display:flex;align-items:center;justify-content:center;font:46px/1 Georgia,serif;letter-spacing:-12px;padding-right:9px;flex-shrink:0}
 .portal-brand small{display:block;margin-top:12px;font-size:11px;font-weight:400;letter-spacing:.3px;color:#c7d5c3}
+.language-switch{display:flex;align-self:flex-start;gap:3px;margin-top:26px;padding:3px;border:1px solid #acc2aa55;border-radius:4px}
+.language-switch button{border:0;border-radius:2px;padding:7px 12px;min-height:34px;background:transparent;color:#c7d5c3;font:inherit;font-size:12px;line-height:1.4;cursor:pointer}
+.language-switch button[aria-pressed="true"]{background:#e8eddd;color:#203e33}
+.language-switch button:hover{color:#fff;background:#3a5748}
+.language-switch button[aria-pressed="true"]:hover{background:#e8eddd;color:#203e33}
+.language-switch button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.language-switch button:disabled{opacity:.45;cursor:default}
+.language-switch + .primary-nav{margin-top:28px}
 .primary-nav{display:flex;flex-direction:column;gap:5px;margin-top:62px}
 .primary-nav a{display:flex;align-items:center;gap:15px;color:#d2ddcc;padding:12px 13px;border-radius:3px;font-size:14px}
 .primary-nav a span{font:15px Georgia,serif;color:#9bb495}
@@ -90,3 +98,28 @@ body{font-family:"Segoe UI","Microsoft YaHei","PingFang SC",sans-serif;font-size
  html{scroll-padding-top:15px}.sidebar{position:relative;width:auto;inset:auto;overflow:visible;display:grid;grid-template-columns:1fr auto;padding:20px;gap:19px 12px}.portal-brand{font-size:27px;gap:10px}.brand-mark{font-size:31px;width:34px;height:40px;letter-spacing:-8px;padding-right:5px}.portal-brand small{font-size:8px;margin-top:6px}.primary-nav{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:0}.primary-nav a{padding:8px 7px;font-size:11px;gap:8px;white-space:nowrap}.primary-nav a span{font-size:11px}.studio-link{grid-column:2;grid-row:1;align-self:center;margin:0;padding:9px 10px;font-size:10px;gap:12px}.studio-link span{font-size:16px}.sidebar-footer{display:none}.portal-main{margin-left:0;padding:21px 22px 0}.topline{font-size:7px;gap:18px;padding-bottom:17px}.topline>span:first-child{max-width:240px}.portal-hero{padding:30px 0;gap:31px}.hero-label{margin-bottom:20px;gap:12px}.hero-label .eyebrow{font-size:8px}.status-pill{font-size:8px;padding:3px 8px}.portal-intro h1{font-size:33px;letter-spacing:-1.5px;margin-bottom:18px}.hero-subtitle{font-size:16px;margin-bottom:15px}.hero-summary{font-size:12px}.hero-actions{margin-top:24px;gap:17px}.hero-actions .button{font-size:12px}.hero-actions .text-link{font-size:11px}.path-heading .eyebrow{font-size:8px}.path-heading>span:last-child{font-size:9px}.research-path ol{gap:7px}.research-path li>span{width:29px;height:29px;font-size:11px}.research-path li:not(:last-child):before{top:14px;left:33px}.research-path strong{font-size:10px}.research-path small{font-size:8px;line-height:1.7}.overview-questions{grid-template-columns:1fr}.overview-questions article,.overview-questions article+article{padding:25px 0;border-left:0}.overview-questions article+article{border-top:1px solid var(--line)}.overview-questions h2{font-size:25px;margin:13px 0}.overview-questions .eyebrow{font-size:9px}.completed-heading{margin-top:29px}.completed-heading h2{font-size:23px}.completed-heading .text-link{font-size:10px}.completed-list{grid-template-columns:1fr;gap:0}.completed-list article{padding:20px 0;gap:18px}.completed-list article>span{font-size:26px}.completed-list h3{font-size:14px}.completed-list p{font-size:11px}.overview-note{font-size:10px}.section{margin-top:30px;padding:32px 0}.section-head h2{font-size:27px}.section-head>p:last-child{font-size:12px}.method-steps{grid-template-columns:1fr}.method-step:last-child{grid-column:auto}.method-detail{padding:22px}.method-detail h3{font-size:23px}.chart-card{padding:21px 17px}.finding{padding:22px}.evidence-grid,.roadmap{gap:16px}.stat-strip>div:nth-child(3){padding-left:0}.sources{margin-top:28px;padding:30px 0;gap:12px}.sources h2{font-size:27px}.source-links>a{font-size:12px}.source-links span{font-size:9px}.portal-main>footer{flex-wrap:wrap;gap:15px}.portal-main>footer .brand{font-size:20px}.portal-main>footer p{font-size:9px}.portal-main>footer>a:last-child{font-size:10px}.skip{left:15px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* English copy needs natural wrapping instead of compressed lettering. */
+html[lang="en"] .portal-brand small{letter-spacing:0}
+html[lang="en"] .portal-intro h1{letter-spacing:-.035em;line-height:1.12}
+html[lang="en"] .hero-subtitle{line-height:1.5}
+html[lang="en"] .primary-nav a{line-height:1.4}
+html[lang="en"] .bar-row{grid-template-columns:80px minmax(0,1fr) 35px}
+html[lang="en"] .legend{flex-wrap:wrap;row-gap:8px}
+html[lang="en"] .chart-title{align-items:flex-start}
+html[lang="en"] .chart-title>span{flex-shrink:0;max-width:90px}
+@media(max-width:760px){
+ .language-switch{grid-column:2;grid-row:1;align-self:center;justify-self:end;margin:0}
+ .language-switch button{padding:7px 9px;min-height:36px;font-size:11px}
+ .language-switch + .primary-nav{margin-top:0}
+ .primary-nav{grid-row:2}
+ .studio-link{grid-column:1/-1;grid-row:3;justify-self:start;margin-top:-5px}
+ html[lang="en"] .primary-nav a{white-space:normal;align-items:flex-start;font-size:11px}
+ html[lang="en"] .primary-nav a>span{flex-shrink:0}
+ html[lang="en"] .research-path ol{grid-template-columns:1fr;gap:15px}
+ html[lang="en"] .research-path li{display:flex;gap:12px}
+ html[lang="en"] .research-path strong{margin:0;font-size:12px}
+ html[lang="en"] .research-path small{font-size:10px}
+ html[lang="en"] .research-path li:not(:last-child):before{left:14px;top:33px;bottom:-11px;right:auto;border-top:0;border-left:1px solid #c3cfb7}
+ html[lang="en"] .stat-strip strong span{font-size:10px}
+ html[lang="en"] .case-tab{line-height:1.5}
+}
