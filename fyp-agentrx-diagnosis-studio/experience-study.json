@@ -1,0 +1,881 @@
+{
+  "updated_at": "2026-10-17T15:28:10.830312+00:00",
+  "status": "complete",
+  "protocol": {
+    "memory_count": 10,
+    "test_count": 11,
+    "repeats": 1,
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "low",
+    "steps_max": 30,
+    "top_k": 2
+  },
+  "metrics": {
+    "no_memory": {
+      "planned_cases": 11,
+      "complete_cases": 11,
+      "missing_or_invalid_cases": 0,
+      "exact_step_correct": 4,
+      "category_correct": 7,
+      "exact_step_accuracy_all_planned": 0.36363636363636365,
+      "category_accuracy_all_planned": 0.6363636363636364,
+      "exact_step_accuracy_complete_only": 0.36363636363636365,
+      "category_accuracy_complete_only": 0.6363636363636364,
+      "mean_absolute_step_distance_complete_only": 5.2727272727272725,
+      "within_one_step_complete_only": 0.5454545454545454,
+      "statuses": {
+        "complete": 11
+      }
+    },
+    "retrieved_memory": {
+      "planned_cases": 11,
+      "complete_cases": 11,
+      "missing_or_invalid_cases": 0,
+      "exact_step_correct": 5,
+      "category_correct": 7,
+      "exact_step_accuracy_all_planned": 0.45454545454545453,
+      "category_accuracy_all_planned": 0.6363636363636364,
+      "exact_step_accuracy_complete_only": 0.45454545454545453,
+      "category_accuracy_complete_only": 0.6363636363636364,
+      "mean_absolute_step_distance_complete_only": 4.909090909090909,
+      "within_one_step_complete_only": 0.6363636363636364,
+      "statuses": {
+        "complete": 11
+      }
+    },
+    "random_memory": {
+      "planned_cases": 11,
+      "complete_cases": 11,
+      "missing_or_invalid_cases": 0,
+      "exact_step_correct": 4,
+      "category_correct": 6,
+      "exact_step_accuracy_all_planned": 0.36363636363636365,
+      "category_accuracy_all_planned": 0.5454545454545454,
+      "exact_step_accuracy_complete_only": 0.36363636363636365,
+      "category_accuracy_complete_only": 0.5454545454545454,
+      "mean_absolute_step_distance_complete_only": 6.090909090909091,
+      "within_one_step_complete_only": 0.5454545454545454,
+      "statuses": {
+        "complete": 11
+      }
+    }
+  },
+  "comparison": {
+    "baseline": "no_memory",
+    "treatment": "retrieved_memory",
+    "planned_cases": 11,
+    "paired_complete_cases": 11,
+    "excluded_cases": [],
+    "effects": {
+      "corrected": 1,
+      "harmed": 0,
+      "both_correct": 4,
+      "both_wrong": 6
+    },
+    "effect_case_ids": {
+      "corrected": [
+        "a3fbeb63-0e8c-4a11-bff6-0e3b484c3e9c"
+      ],
+      "harmed": [],
+      "both_correct": [
+        "6b06d186921b8b390c65aebd0d16f09f60a47d2f1288ebe36953f734e84c0a3c",
+        "72c06643-a2fa-4186-aa5c-9ec33ae9b445",
+        "73c1b9fe-ee1d-4cf4-96ca-35c08f97b054",
+        "2aa5dd83fbcd0dce9a3dd4592106e5b5edf738008d932e357d477bba80e59ccf"
+      ],
+      "both_wrong": [
+        "42d4198c-5895-4f0a-b0c0-424a66465d83",
+        "14569e28-c88c-43e4-8c32-097d35b9a67d",
+        "52f7224e9c79431e7926afe317782711a0028750693e7456cde22ef6f4bd8bd5",
+        "f88066d274e265edd6cd9d61cd80a41accb3a14baf2297652fdd05cdf716d455",
+        "6e3be83d1949fa52cba03fb1ce4b5b3bf7e37a83fd7d67694b10b2e439d90cf8",
+        "a1e91b78-d3d8-4675-bb8d-62741b4b68a6"
+      ]
+    },
+    "step_changed_cases": 2,
+    "distance_effects": {
+      "unchanged": 9,
+      "worsened": 1,
+      "improved": 1
+    },
+    "baseline_exact_on_paired": 4,
+    "treatment_exact_on_paired": 5,
+    "net_accuracy_change_on_paired": 0.09090909090909091,
+    "corrections_all_planned": 0.09090909090909091,
+    "harms_all_planned": 0.0,
+    "note": "both_wrong means exact-step correctness stayed wrong; the predicted step may still have changed. Missing pairs are not counted as unchanged."
+  },
+  "all_comparisons": {
+    "no_memory_vs_retrieved_memory": {
+      "baseline": "no_memory",
+      "treatment": "retrieved_memory",
+      "planned_cases": 11,
+      "paired_complete_cases": 11,
+      "excluded_cases": [],
+      "effects": {
+        "corrected": 1,
+        "harmed": 0,
+        "both_correct": 4,
+        "both_wrong": 6
+      },
+      "effect_case_ids": {
+        "corrected": [
+          "a3fbeb63-0e8c-4a11-bff6-0e3b484c3e9c"
+        ],
+        "harmed": [],
+        "both_correct": [
+          "6b06d186921b8b390c65aebd0d16f09f60a47d2f1288ebe36953f734e84c0a3c",
+          "72c06643-a2fa-4186-aa5c-9ec33ae9b445",
+          "73c1b9fe-ee1d-4cf4-96ca-35c08f97b054",
+          "2aa5dd83fbcd0dce9a3dd4592106e5b5edf738008d932e357d477bba80e59ccf"
+        ],
+        "both_wrong": [
+          "42d4198c-5895-4f0a-b0c0-424a66465d83",
+          "14569e28-c88c-43e4-8c32-097d35b9a67d",
+          "52f7224e9c79431e7926afe317782711a0028750693e7456cde22ef6f4bd8bd5",
+          "f88066d274e265edd6cd9d61cd80a41accb3a14baf2297652fdd05cdf716d455",
+          "6e3be83d1949fa52cba03fb1ce4b5b3bf7e37a83fd7d67694b10b2e439d90cf8",
+          "a1e91b78-d3d8-4675-bb8d-62741b4b68a6"
+        ]
+      },
+      "step_changed_cases": 2,
+      "distance_effects": {
+        "unchanged": 9,
+        "worsened": 1,
+        "improved": 1
+      },
+      "baseline_exact_on_paired": 4,
+      "treatment_exact_on_paired": 5,
+      "net_accuracy_change_on_paired": 0.09090909090909091,
+      "corrections_all_planned": 0.09090909090909091,
+      "harms_all_planned": 0.0,
+      "note": "both_wrong means exact-step correctness stayed wrong; the predicted step may still have changed. Missing pairs are not counted as unchanged."
+    },
+    "no_memory_vs_random_memory": {
+      "baseline": "no_memory",
+      "treatment": "random_memory",
+      "planned_cases": 11,
+      "paired_complete_cases": 11,
+      "excluded_cases": [],
+      "effects": {
+        "corrected": 1,
+        "harmed": 1,
+        "both_correct": 3,
+        "both_wrong": 6
+      },
+      "effect_case_ids": {
+        "corrected": [
+          "f88066d274e265edd6cd9d61cd80a41accb3a14baf2297652fdd05cdf716d455"
+        ],
+        "harmed": [
+          "72c06643-a2fa-4186-aa5c-9ec33ae9b445"
+        ],
+        "both_correct": [
+          "6b06d186921b8b390c65aebd0d16f09f60a47d2f1288ebe36953f734e84c0a3c",
+          "73c1b9fe-ee1d-4cf4-96ca-35c08f97b054",
+          "2aa5dd83fbcd0dce9a3dd4592106e5b5edf738008d932e357d477bba80e59ccf"
+        ],
+        "both_wrong": [
+          "42d4198c-5895-4f0a-b0c0-424a66465d83",
+          "14569e28-c88c-43e4-8c32-097d35b9a67d",
+          "52f7224e9c79431e7926afe317782711a0028750693e7456cde22ef6f4bd8bd5",
+          "a3fbeb63-0e8c-4a11-bff6-0e3b484c3e9c",
+          "6e3be83d1949fa52cba03fb1ce4b5b3bf7e37a83fd7d67694b10b2e439d90cf8",
+          "a1e91b78-d3d8-4675-bb8d-62741b4b68a6"
+        ]
+      },
+      "step_changed_cases": 2,
+      "distance_effects": {
+        "unchanged": 9,
+        "worsened": 1,
+        "improved": 1
+      },
+      "baseline_exact_on_paired": 4,
+      "treatment_exact_on_paired": 4,
+      "net_accuracy_change_on_paired": 0.0,
+      "corrections_all_planned": 0.09090909090909091,
+      "harms_all_planned": 0.09090909090909091,
+      "note": "both_wrong means exact-step correctness stayed wrong; the predicted step may still have changed. Missing pairs are not counted as unchanged."
+    },
+    "random_memory_vs_retrieved_memory": {
+      "baseline": "random_memory",
+      "treatment": "retrieved_memory",
+      "planned_cases": 11,
+      "paired_complete_cases": 11,
+      "excluded_cases": [],
+      "effects": {
+        "corrected": 2,
+        "harmed": 1,
+        "both_correct": 3,
+        "both_wrong": 5
+      },
+      "effect_case_ids": {
+        "corrected": [
+          "72c06643-a2fa-4186-aa5c-9ec33ae9b445",
+          "a3fbeb63-0e8c-4a11-bff6-0e3b484c3e9c"
+        ],
+        "harmed": [
+          "f88066d274e265edd6cd9d61cd80a41accb3a14baf2297652fdd05cdf716d455"
+        ],
+        "both_correct": [
+          "6b06d186921b8b390c65aebd0d16f09f60a47d2f1288ebe36953f734e84c0a3c",
+          "73c1b9fe-ee1d-4cf4-96ca-35c08f97b054",
+          "2aa5dd83fbcd0dce9a3dd4592106e5b5edf738008d932e357d477bba80e59ccf"
+        ],
+        "both_wrong": [
+          "42d4198c-5895-4f0a-b0c0-424a66465d83",
+          "14569e28-c88c-43e4-8c32-097d35b9a67d",
+          "52f7224e9c79431e7926afe317782711a0028750693e7456cde22ef6f4bd8bd5",
+          "6e3be83d1949fa52cba03fb1ce4b5b3bf7e37a83fd7d67694b10b2e439d90cf8",
+          "a1e91b78-d3d8-4675-bb8d-62741b4b68a6"
+        ]
+      },
+      "step_changed_cases": 3,
+      "distance_effects": {
+        "unchanged": 8,
+        "improved": 2,
+        "worsened": 1
+      },
+      "baseline_exact_on_paired": 4,
+      "treatment_exact_on_paired": 5,
+      "net_accuracy_change_on_paired": 0.09090909090909091,
+      "corrections_all_planned": 0.18181818181818182,
+      "harms_all_planned": 0.09090909090909091,
+      "note": "both_wrong means exact-step correctness stayed wrong; the predicted step may still have changed. Missing pairs are not counted as unchanged."
+    }
+  },
+  "random_memory_overlap": {
+    "comparable_cases": 11,
+    "cases_with_overlap": 4,
+    "total_overlapping_cards": 4,
+    "same_set_cases": 0,
+    "same_order_cases": 0,
+    "identical_messages_cases": 0,
+    "details": [
+      {
+        "trajectory_id": "6b06d186921b8b390c65aebd0d16f09f60a47d2f1288ebe36953f734e84c0a3c",
+        "overlap_count": 0,
+        "retrieved_count": 2,
+        "random_count": 2,
+        "same_set": false,
+        "same_order": false,
+        "same_messages": false
+      },
+      {
+        "trajectory_id": "42d4198c-5895-4f0a-b0c0-424a66465d83",
+        "overlap_count": 0,
+        "retrieved_count": 2,
+        "random_count": 2,
+        "same_set": false,
+        "same_order": false,
+        "same_messages": false
+      },
+      {
+        "trajectory_id": "72c06643-a2fa-4186-aa5c-9ec33ae9b445",
+        "overlap_count": 0,
+        "retrieved_count": 2,
+        "random_count": 2,
+        "same_set": false,
+        "same_order": false,
+        "same_messages": false
+      },
+      {
+        "trajectory_id": "14569e28-c88c-43e4-8c32-097d35b9a67d",
+        "overlap_count": 1,
+        "retrieved_count": 2,
+        "random_count": 2,
+        "same_set": false,
+        "same_order": false,
+        "same_messages": false
+      },
+      {
+        "trajectory_id": "52f7224e9c79431e7926afe317782711a0028750693e7456cde22ef6f4bd8bd5",
+        "overlap_count": 0,
+        "retrieved_count": 2,
+        "random_count": 2,
+        "same_set": false,
+        "same_order": false,
+        "same_messages": false
+      },
+      {
+        "trajectory_id": "73c1b9fe-ee1d-4cf4-96ca-35c08f97b054",
+        "overlap_count": 1,
+        "retrieved_count": 2,
+        "random_count": 2,
+        "same_set": false,
+        "same_order": false,
+        "same_messages": false
+      },
+      {
+        "trajectory_id": "2aa5dd83fbcd0dce9a3dd4592106e5b5edf738008d932e357d477bba80e59ccf",
+        "overlap_count": 1,
+        "retrieved_count": 2,
+        "random_count": 2,
+        "same_set": false,
+        "same_order": false,
+        "same_messages": false
+      },
+      {
+        "trajectory_id": "f88066d274e265edd6cd9d61cd80a41accb3a14baf2297652fdd05cdf716d455",
+        "overlap_count": 0,
+        "retrieved_count": 2,
+        "random_count": 2,
+        "same_set": false,
+        "same_order": false,
+        "same_messages": false
+      },
+      {
+        "trajectory_id": "a3fbeb63-0e8c-4a11-bff6-0e3b484c3e9c",
+        "overlap_count": 0,
+        "retrieved_count": 2,
+        "random_count": 2,
+        "same_set": false,
+        "same_order": false,
+        "same_messages": false
+      },
+      {
+        "trajectory_id": "6e3be83d1949fa52cba03fb1ce4b5b3bf7e37a83fd7d67694b10b2e439d90cf8",
+        "overlap_count": 1,
+        "retrieved_count": 2,
+        "random_count": 2,
+        "same_set": false,
+        "same_order": false,
+        "same_messages": false
+      },
+      {
+        "trajectory_id": "a1e91b78-d3d8-4675-bb8d-62741b4b68a6",
+        "overlap_count": 0,
+        "retrieved_count": 2,
+        "random_count": 2,
+        "same_set": false,
+        "same_order": false,
+        "same_messages": false
+      }
+    ]
+  },
+  "cases": [
+    {
+      "id": "6b06d186921b8b390c65aebd0d16f09f60a47d2f1288ebe36953f734e84c0a3c",
+      "instruction": "What's the smallest house (based on square footage) that has at least 2 beds and 2 baths and was sold in Prince Edward Island between June 1, 2022 and May 15 2024 according to Zillow?",
+      "steps": 17,
+      "gold_step": 17,
+      "arms": {
+        "no_memory": {
+          "status": "complete",
+          "predicted_step": 17,
+          "predicted_category": 8,
+          "step_correct": true,
+          "memory_ids": [],
+          "reason": "Step 17 contains the first explicit execution-blocking failure: a content_filter rejection during update_ledger. Earlier steps remain intermediate search actions, and no later step demonstrates recovery."
+        },
+        "retrieved_memory": {
+          "status": "complete",
+          "predicted_step": 17,
+          "predicted_category": 8,
+          "step_correct": true,
+          "memory_ids": [
+            "E06",
+            "E02"
+          ],
+          "reason": "Step 17 contains the first unrecovered blocking event: the model request returns a content_filter rejection with jailbreak detected and filtered. Earlier steps continue successfully and do not claim that the research is complete."
+        },
+        "random_memory": {
+          "status": "complete",
+          "predicted_step": 17,
+          "predicted_category": 8,
+          "step_correct": true,
+          "memory_ids": [
+            "E04",
+            "E07"
+          ],
+          "reason": "Step 17 contains the first explicit unresolved failure: the ledger-update call is rejected because the prompt triggered Azure OpenAI's content-management policy. Earlier incomplete filtering represents work in progress rather than a demonstrated abandonment or unsupported conclusion."
+        }
+      }
+    },
+    {
+      "id": "42d4198c-5895-4f0a-b0c0-424a66465d83",
+      "instruction": "I'm curious about how much information is available for popular video games before their release. Find the Wikipedia page for the 2019 game that won the British Academy Games Awards. How many revisions did that page have before the month listed as the game's release date on that Wikipedia page (as of the most recent entry from 2022)?",
+      "steps": 20,
+      "gold_step": 19,
+      "arms": {
+        "no_memory": {
+          "status": "complete",
+          "predicted_step": 2,
+          "predicted_category": 5,
+          "step_correct": false,
+          "memory_ids": [],
+          "reason": "Step 2 explicitly defines the derived quantity as revisions before the game's release date and instructs counting until that date. This already departs from the user's month boundary and historical reference. No later step corrects the plan; the subsequent April 20 cutoff makes the unresolved mismatch concrete. The navigation detour at step 9 is recovered at step 13."
+        },
+        "retrieved_memory": {
+          "status": "complete",
+          "predicted_step": 2,
+          "predicted_category": 5,
+          "step_correct": false,
+          "memory_ids": [
+            "E02",
+            "E09"
+          ],
+          "reason": "Step 2 first establishes the incorrect counting objective: its plan says to count revisions 'until the release date' instead of strictly before the release month. This error remains unresolved through termination, so it precedes the flagged directives at steps 14–15 and the premature completion at step 18."
+        },
+        "random_memory": {
+          "status": "complete",
+          "predicted_step": 2,
+          "predicted_category": 5,
+          "step_correct": false,
+          "memory_ids": [
+            "E03",
+            "E07"
+          ],
+          "reason": "Step 2 explicitly plans to identify the winner of the 2019 awards and count revisions until the release date, despite recording that the game was released in 2019. This is the first observable divergence. Steps 14–15 repeat the incorrect day-based boundary, and the run terminates without recovery."
+        }
+      }
+    },
+    {
+      "id": "72c06643-a2fa-4186-aa5c-9ec33ae9b445",
+      "instruction": "What is the volume in milliliters of a system comprised of 0.312 kg Freon-12 refrigerant when placed at the bottom of the Marianas Trench and allowed to stabilize at the Trench's peak temperature, rounded to the nearest mL? Provide your answer as just an integer value.",
+      "steps": 28,
+      "gold_step": 9,
+      "arms": {
+        "no_memory": {
+          "status": "complete",
+          "predicted_step": 9,
+          "predicted_category": 8,
+          "step_correct": true,
+          "memory_ids": [],
+          "reason": "Step 9 is the first explicit access denial: ResearchGate requires human verification. Although the agent searches alternative sources, the trajectory never shows successful recovery of the required data before returning an assumed-density estimate."
+        },
+        "retrieved_memory": {
+          "status": "complete",
+          "predicted_step": 9,
+          "predicted_category": 8,
+          "step_correct": true,
+          "memory_ids": [
+            "E02",
+            "E09"
+          ],
+          "reason": "Step 9 is the earliest explicit access denial: ResearchGate requires Cloudflare human verification. Later steps provide no successful retrieval of the required density data, and the alternative ACS PDF encounters the same barrier."
+        },
+        "random_memory": {
+          "status": "complete",
+          "predicted_step": 22,
+          "predicted_category": 5,
+          "step_correct": false,
+          "memory_ids": [
+            "E08",
+            "E07"
+          ],
+          "reason": "Step 22 explicitly redirects the calculation to approximate values near 4°C and 1100 atm despite those conditions remaining unverified. This consequential change persists through the assumed density at step 25, the completion claim at step 26, and the final answer."
+        }
+      }
+    },
+    {
+      "id": "14569e28-c88c-43e4-8c32-097d35b9a67d",
+      "instruction": "In Unlambda, what exact charcter or text needs to be added to correct the following code to output \"For penguins\"? If what is needed is a character, answer with the name of the character. If there are different names for the character, use the shortest. The text location is not needed. Code:\n\n`r```````````.F.o.r. .p.e.n.g.u.i.n.si",
+      "steps": 16,
+      "gold_step": 12,
+      "arms": {
+        "no_memory": {
+          "status": "complete",
+          "predicted_step": 13,
+          "predicted_category": 2,
+          "step_correct": false,
+          "memory_ids": [],
+          "reason": "Step 13 first supplies the false operator semantics and concrete incorrect repair. Steps 14–16 adopt and finalize that proposal without verification or correction, so the failure remains unresolved."
+        },
+        "retrieved_memory": {
+          "status": "complete",
+          "predicted_step": 13,
+          "predicted_category": 2,
+          "step_correct": false,
+          "memory_ids": [
+            "E02",
+            "E04"
+          ],
+          "reason": "Step 13 first introduces the false operator behavior and proposes the incorrect modified source. Although verification is requested, none occurs: steps 14–16 adopt the proposal and finalize k, leaving the error unresolved."
+        },
+        "random_memory": {
+          "status": "complete",
+          "predicted_step": 13,
+          "predicted_category": 2,
+          "step_correct": false,
+          "memory_ids": [
+            "E02",
+            "E10"
+          ],
+          "reason": "Step 13 first states the false operator behavior and proposes the incorrect modified source ending in .sk instead of .si. This error remains unresolved: step 14 accepts it, and step 16 returns k."
+        }
+      }
+    },
+    {
+      "id": "52f7224e9c79431e7926afe317782711a0028750693e7456cde22ef6f4bd8bd5",
+      "instruction": "What is the highest rated (according to IMDB) Isabelle Adjani feature film that is less than 2 hours and is available on Vudu (now called Fandango at Home) to buy or rent?",
+      "steps": 21,
+      "gold_step": 11,
+      "arms": {
+        "no_memory": {
+          "status": "complete",
+          "predicted_step": 10,
+          "predicted_category": 4,
+          "step_correct": false,
+          "memory_ids": [],
+          "reason": "Step 10 first operationalizes the misinterpretation: after step 9 reports The Tenant as 126 minutes, the orchestrator treats candidate identification as sufficient and requests availability checks for it. Subsequent steps never exclude it, and step 21 ultimately selects it."
+        },
+        "retrieved_memory": {
+          "status": "complete",
+          "predicted_step": 10,
+          "predicted_category": 4,
+          "step_correct": false,
+          "memory_ids": [
+            "E06",
+            "E09"
+          ],
+          "reason": "Step 9 supplied the disqualifying runtime. Step 10 is the first subsequent decision that fails to use it, directing availability checks for The Tenant rather than excluding it. The final selection at step 21 demonstrates that this error remained unresolved."
+        },
+        "random_memory": {
+          "status": "complete",
+          "predicted_step": 10,
+          "predicted_category": 4,
+          "step_correct": false,
+          "memory_ids": [
+            "E08",
+            "E01"
+          ],
+          "reason": "Step 10 is the first decision that advances The Tenant to availability verification after step 9 explicitly reports its runtime as 126 minutes. The runtime filtering was not completed, and the subsequent trajectory never resolves this error."
+        }
+      }
+    },
+    {
+      "id": "73c1b9fe-ee1d-4cf4-96ca-35c08f97b054",
+      "instruction": "According to the USGS, in what year was the American Alligator first found west of Texas (not including Texas)?",
+      "steps": 13,
+      "gold_step": 13,
+      "arms": {
+        "no_memory": {
+          "status": "complete",
+          "predicted_step": 13,
+          "predicted_category": 8,
+          "step_correct": true,
+          "memory_ids": [],
+          "reason": "Step 13 contains the first explicit blocking error: the orchestrator's model request is rejected by the content filter. The trajectory ends without resolving that rejection or completing the evidence search."
+        },
+        "retrieved_memory": {
+          "status": "complete",
+          "predicted_step": 13,
+          "predicted_category": 8,
+          "step_correct": true,
+          "memory_ids": [
+            "E05",
+            "E06"
+          ],
+          "reason": "Step 13 contains the first unrecovered blocking error: ResponsibleAIPolicyViolation with code content_filter during the orchestrator's update_ledger model call. Earlier model-mapping warnings did not prevent continued execution."
+        },
+        "random_memory": {
+          "status": "complete",
+          "predicted_step": 13,
+          "predicted_category": 8,
+          "step_correct": true,
+          "memory_ids": [
+            "E05",
+            "E03"
+          ],
+          "reason": "Step 13 contains the first explicit unresolved execution failure: the ledger-update call was rejected by a content-policy guardrail. No later step demonstrates recovery or acquisition of the needed USGS occurrence evidence."
+        }
+      }
+    },
+    {
+      "id": "2aa5dd83fbcd0dce9a3dd4592106e5b5edf738008d932e357d477bba80e59ccf",
+      "instruction": "Based on recent years (2020-2023), how likely am I to hit a rainy day (at least 0.5mm of precipitation) if I travel to Seattle during the first week of September? (provide the answer in percentage)",
+      "steps": 5,
+      "gold_step": 5,
+      "arms": {
+        "no_memory": {
+          "status": "complete",
+          "predicted_step": 5,
+          "predicted_category": 8,
+          "step_correct": true,
+          "memory_ids": [],
+          "reason": "Step 5 contains the first explicit execution failure: a content_filter response reporting jailbreak detection. The trajectory ends without a successful retry or other recovery."
+        },
+        "retrieved_memory": {
+          "status": "complete",
+          "predicted_step": 5,
+          "predicted_category": 8,
+          "step_correct": true,
+          "memory_ids": [
+            "E06",
+            "E05"
+          ],
+          "reason": "Step 5 contains the first unrecovered blocking failure: the orchestrator's model request receives an explicit content_filter rejection. Earlier steps continue successfully, and no later recovery appears."
+        },
+        "random_memory": {
+          "status": "complete",
+          "predicted_step": 5,
+          "predicted_category": 8,
+          "step_correct": true,
+          "memory_ids": [
+            "E06",
+            "E02"
+          ],
+          "reason": "Step 5 contains the first unrecovered blocking failure: the model request is rejected with code 'content_filter' and a detected jailbreak flag. Earlier steps continue successfully, and no recovery from this rejection appears afterward."
+        }
+      }
+    },
+    {
+      "id": "f88066d274e265edd6cd9d61cd80a41accb3a14baf2297652fdd05cdf716d455",
+      "instruction": "What popular hiking trails to waterfalls in Yosemite National Park (more than 1,000 reviews on TripAdvisor) have been recommended to be fully accessible to wheelchairs by at least three different people and are highly rated (4.5/5 or more on average)?",
+      "steps": 17,
+      "gold_step": 17,
+      "arms": {
+        "no_memory": {
+          "status": "complete",
+          "predicted_step": 13,
+          "predicted_category": 1,
+          "step_correct": false,
+          "memory_ids": [],
+          "reason": "Step 13 opens the Valley Loop Trail Bing listing despite step 11's explicit instruction to visit TripAdvisor and verify the required evidence. Steps 14–17 show no recovery: the instruction is repeated, and step 17 reopens the same listing. The flagged repetition at step 17 is a continuation of the earlier unresolved deviation."
+        },
+        "retrieved_memory": {
+          "status": "complete",
+          "predicted_step": 9,
+          "predicted_category": 1,
+          "step_correct": false,
+          "memory_ids": [
+            "E09",
+            "E07"
+          ],
+          "reason": "Step 7 explicitly requests visiting TripAdvisor, but step 9 clicks 'See more results' in the map panel and opens Bing map results. Steps 13 and 17 continue within those listings without recovering. The flagged repetition at step 17 is a later manifestation of the unresolved navigation deviation."
+        },
+        "random_memory": {
+          "status": "complete",
+          "predicted_step": 17,
+          "predicted_category": 1,
+          "step_correct": true,
+          "memory_ids": [
+            "E01",
+            "E08"
+          ],
+          "reason": "Step 17 repeats the Bing listing navigation already performed at step 13 after step 15 explicitly requests TripAdvisor verification. Unlike the initial exploratory click, this repetition provides no relevant new evidence. No subsequent recovery is shown."
+        }
+      }
+    },
+    {
+      "id": "a3fbeb63-0e8c-4a11-bff6-0e3b484c3e9c",
+      "instruction": "How many slides in this PowerPoint presentation mention crustaceans?\n\nThe question is about a file, document or image, which can be accessed by the filename 'a3fbeb63-0e8c-4a11-bff6-0e3b484c3e9c.pptx' in the current working directory.\n\nHere are the file's contents:\n\n<!-- Slide number: 1 -->\n# Animals\nThat are awesome and aquatic\n\n### Notes:\n\n<!-- Slide number: 2 -->\n# crayfish\n\n### Notes:\n\n<!-- Slide number: 3 -->\n# nematodes\n\n### Notes:\n\n<!-- Slide number: 4 -->\n# isopods\n\n### Notes:\n\n<!-- Slide number: 5 -->\n# eels\n\n### Notes:\n\n<!-- Slide number: 6 -->\n# Yeti crab\n\n### Notes:\n\n<!-- Slide number: 7 -->\n# Spider crab\n\n### Notes:\n\n<!-- Slide number: 8 -->\n# jellyfish\n\n### Notes:",
+      "steps": 21,
+      "gold_step": 21,
+      "arms": {
+        "no_memory": {
+          "status": "complete",
+          "predicted_step": 13,
+          "predicted_category": 8,
+          "step_correct": false,
+          "memory_ids": [],
+          "reason": "Step 13 is the earliest explicit report that verification encountered content-filtering issues. Subsequent retries and the fallback remain unsuccessful, with the policy block confirmed by the exception at step 21."
+        },
+        "retrieved_memory": {
+          "status": "complete",
+          "predicted_step": 21,
+          "predicted_category": 8,
+          "step_correct": true,
+          "memory_ids": [
+            "E10",
+            "E05"
+          ],
+          "reason": "Step 21 contains the first explicit rejection with a concrete exception and policy-filter details. Earlier references to filtering lack enough execution evidence to locate the rejected invocation precisely, and the fallback attempted at steps 19–20 never succeeds."
+        },
+        "random_memory": {
+          "status": "complete",
+          "predicted_step": 13,
+          "predicted_category": 8,
+          "step_correct": false,
+          "memory_ids": [
+            "E06",
+            "E03"
+          ],
+          "reason": "Step 13 first documents content filtering interrupting verification of Yeti crab and Spider crab. That interruption remains unresolved through subsequent retries and the explicit policy rejection at step 21. Earlier searches succeeded."
+        }
+      }
+    },
+    {
+      "id": "6e3be83d1949fa52cba03fb1ce4b5b3bf7e37a83fd7d67694b10b2e439d90cf8",
+      "instruction": "Where can I take martial arts classes within a five-minute walk from the New York Stock Exchange after work (7-9 pm)?",
+      "steps": 29,
+      "gold_step": 10,
+      "arms": {
+        "no_memory": {
+          "status": "complete",
+          "predicted_step": 29,
+          "predicted_category": 8,
+          "step_correct": false,
+          "memory_ids": [],
+          "reason": "Step 29 contains the explicit policy-filter exception and the termination of the run. Earlier advertisement detours were reversed, whereas this block remained unresolved."
+        },
+        "retrieved_memory": {
+          "status": "complete",
+          "predicted_step": 29,
+          "predicted_category": 8,
+          "step_correct": false,
+          "memory_ids": [
+            "E05",
+            "E06"
+          ],
+          "reason": "Step 29 records the blocking policy rejection and termination. Earlier navigation errors show recovery, whereas this rejection remains unresolved. The traceback identifies the orchestrator's model request as the rejected operation; it does not establish what content triggered the filter."
+        },
+        "random_memory": {
+          "status": "complete",
+          "predicted_step": 29,
+          "predicted_category": 8,
+          "step_correct": false,
+          "memory_ids": [
+            "E06",
+            "E04"
+          ],
+          "reason": "Step 29 contains the first explicit unrecovered blocking rejection: the ledger-update call fails with a policy-filter response, followed by termination without further research or recovery."
+        }
+      }
+    },
+    {
+      "id": "a1e91b78-d3d8-4675-bb8d-62741b4b68a6",
+      "instruction": "In the video https://www.youtube.com/watch?v=L1vXCYZAYYM, what is the highest number of bird species to be on camera simultaneously?",
+      "steps": 25,
+      "gold_step": 5,
+      "arms": {
+        "no_memory": {
+          "status": "complete",
+          "predicted_step": 13,
+          "predicted_category": 1,
+          "step_correct": false,
+          "memory_ids": [],
+          "reason": "Step 13 is the first unresolved execution deviation: after the video was successfully opened and inspection explicitly requested, WebSurfer scrolled down to comments. Subsequent pause and scrolling actions produced no documented scene analysis or verified maximum."
+        },
+        "retrieved_memory": {
+          "status": "complete",
+          "predicted_step": 13,
+          "predicted_category": 1,
+          "step_correct": false,
+          "memory_ids": [
+            "E06",
+            "E05"
+          ],
+          "reason": "Step 13 is the first unresolved departure from the video-review instruction after successful access. It explicitly reports scrolling down into comments; subsequent outputs show pausing and further comment browsing without completed scene analysis. The loop recognized at step 18 therefore reflects an earlier unresolved failure."
+        },
+        "random_memory": {
+          "status": "complete",
+          "predicted_step": 13,
+          "predicted_category": 1,
+          "step_correct": false,
+          "memory_ids": [
+            "E08",
+            "E01"
+          ],
+          "reason": "Step 13 is the first unresolved departure from the plan: after step 11 explicitly requested video scanning, timestamps, and screenshots of relevant moments, WebSurfer scrolled down into the comments. Later outputs show comments and player controls but no documented species observations or verified maximum."
+        }
+      }
+    }
+  ],
+  "memory": [
+    {
+      "card_id": "E01",
+      "symptom": "The output followed the requested word order superficially but assigned grammatical roles and case forms inconsistently, then declared the task complete.",
+      "mechanism": "An explicit exception to familiar semantic roles was recorded but not applied during construction. Default source-language roles displaced the supplied rule, and subsequent validation endorsed the resulting mistake.",
+      "localization_rule": "Locate the first construction decision that contradicts an acknowledged role constraint and remains uncorrected. That decision causes the malformed output; later completion claims merely propagate it. Attribute responsibility to the component making that decision, regardless of its title.",
+      "applicability": "Applies when explicit task rules override familiar role assignments and a solver acknowledges those rules but reverts to defaults. It does not apply when ordinary role assignments are intended, the governing rule is absent or ambiguous, or the mismatch is corrected before delivery.",
+      "recovery_counterexample": "No earlier recovered error is demonstrated here. Recording the correct exception before violating it is not recovery. If a later check had repaired the role and case assignments before delivery, the initial mistake would be recovered and would not explain a remaining failure.",
+      "review_status": "supported"
+    },
+    {
+      "card_id": "E02",
+      "symptom": "A precise maximum sale price was returned even though the available search output did not establish complete coverage or confirm that the cited property matched the requested apartment type.",
+      "mechanism": "Partial search output was promoted into a verified answer. The decisive failure was accepting insufficient evidence as completion: limited retrieval remained recoverable through further investigation, but the completion decision ended that opportunity and propagated the unsupported figure.",
+      "localization_rule": "Locate the first unrecovered decision that treats insufficient evidence as satisfying the request. Distinguish incomplete retrieval from acceptance of that retrieval as conclusive; attribute responsibility to whichever component makes the unsupported commitment, rather than automatically blaming a coordinating role.",
+      "applicability": "Applies when a definitive answer, especially a maximum, depends on coverage and category checks that the retrieved material does not establish. It does not apply merely because only part of a page is visible: a partial view may contain sufficient authoritative evidence, or later verification may resolve the gaps.",
+      "recovery_counterexample": "No recovery is shown in this case. Limited retrieval could have been recovered by checking the source, confirming eligibility, and establishing sufficient comparison coverage before completion. If that verification occurred, the earlier partial view would not explain a later failure.",
+      "review_status": "supported_with_localization_caveat"
+    },
+    {
+      "card_id": "E03",
+      "symptom": "A time-bounded request ended with a general resource link whose applicability to the requested historical period had not been established.",
+      "mechanism": "The decision-maker promoted an unverified search candidate into the investigation target without checking its temporal fit, then treated topical relevance and download availability as sufficient for completion. The annotation locates the root at that unchecked handoff; the final unsupported answer is its downstream consequence.",
+      "localization_rule": "Locate the first consequential decision that carries unverified evidence past a required constraint check. Earlier poor search results can remain recoverable candidates; adopting them without validation makes the omission causal. Attribute responsibility to the actor making that decision, rather than assuming a particular coordination role is always responsible.",
+      "applicability": "Applies when a historical cutoff is essential and retrieved resources lack verified release or archive provenance. It does not apply when temporal suitability has already been established, when the user requests current material, or when the failure instead comes from faulty retrieval despite an adequate validation decision.",
+      "recovery_counterexample": "An initial search containing older or undated results is recoverable if subsequent work checks release history and rejects unsuitable candidates. This trace does not demonstrate such recovery: the earlier search remained provisional, but the later selection propagated its unresolved temporal uncertainty.",
+      "review_status": "supported_with_localization_caveat"
+    },
+    {
+      "card_id": "E04",
+      "symptom": "The reported overlap count was too low after a retrieved top-ten list was inaccurately reconstructed.",
+      "mechanism": "The interpreting assistant omitted a qualifying entry and promoted the next entry into the cutoff set. The comparison then used that altered set, so the incorrect count followed from faulty extraction rather than the comparison operation. Later acceptance preserved the error.",
+      "localization_rule": "Locate the first unrecovered divergence between retrieved evidence and the representation used for reasoning. When the source contains the needed entry but a reconstructed list excludes it, localize the failure to interpretation; subsequent calculation and completion decisions are downstream symptoms.",
+      "applicability": "Applies when retrieved ranked data are sufficient, but an agent changes membership while transcribing or summarizing the cutoff set. It does not apply when the source is incomplete, the ranking scope is wrong, or faithful extraction is followed by an independent comparison error.",
+      "recovery_counterexample": "The initial search did not supply the required lists, but later navigation retrieved them, resolving that evidence gap. Had the altered list been corrected before comparison, its omission would also have been recovered. The observed omission persisted through the final response.",
+      "review_status": "supported"
+    },
+    {
+      "card_id": "E05",
+      "symptom": "A handoff to local document inspection produced repeated file-not-found results, leaving the requested quotation unverified.",
+      "mechanism": "The coordinator treated viewing a remote document as evidence that a local copy existed. This unsupported state assumption redirected work to an unavailable artifact and persisted after access failed. The later policy rejection was a separate complication, not evidence that the assumed download occurred.",
+      "localization_rule": "Locate the first unsupported prerequisite that redirects execution and remains unrepaired. Distinguish observing remote content from confirming a local artifact. Attribute the failure to whoever introduces the unsupported state, rather than automatically blaming the coordinator or the component reporting the resulting error.",
+      "applicability": "Applies when a workflow transfers work between remote viewing and local processing without evidence that the required artifact was acquired. It does not apply when local availability was confirmed and the artifact later disappeared, or when an independent access restriction alone prevented completion.",
+      "recovery_counterexample": "An earlier navigation problem would not be the root if a later route restored access. Here, no successful local acquisition or inspection is shown after the unsupported handoff; repeating the local request did not repair its prerequisite.",
+      "review_status": "supported"
+    },
+    {
+      "card_id": "E06",
+      "symptom": "Research stopped after an initial search result, leaving the requested identification without a visible verification chain.",
+      "mechanism": "A policy filter rejected a model request while processing browsing output. The annotation attributes the failure to the browsing agent; the traceback places the rejection in the subsequent orchestration update. The evidence establishes a blocking filter response, but does not establish which prompt content triggered it.",
+      "localization_rule": "Locate the first unrecovered blocking rejection and distinguish the component supplying content from the component making the rejected call. Earlier nonfatal warnings are not the root when execution continues; an unsupported final answer is a downstream symptom when evidence gathering has already stopped.",
+      "applicability": "Apply when external-content processing is followed by an explicit policy rejection that halts research without a successful retry. This analogy does not apply when filtering is recovered, research continues, or the actual failure is incorrect evidence extraction or reasoning after successful access.",
+      "recovery_counterexample": "An earlier model-mapping warning did not stop execution: the team issued a browsing request and obtained search results afterward. It therefore was not the unrecovered critical failure. No successful recovery from the later policy rejection is visible.",
+      "review_status": "supported_with_annotation_caveat"
+    },
+    {
+      "card_id": "E07",
+      "symptom": "Research advanced to checking secondary criteria using an incomplete, geographically unverified candidate list, then ended with an unsupported selection.",
+      "mechanism": "The decision-maker treated discovery output as a sufficient candidate set and advanced without checking coverage or the required boundary. The earlier retrieval shortfall remained recoverable; accepting it without validation made it persist. The later policy rejection compounded the failure but did not cause that earlier decision.",
+      "localization_rule": "Locate the first consequential decision that promotes incomplete retrieval into an accepted premise without validating required constraints. Distinguish a recoverable retrieval gap from its unrecovered adoption, and separate later execution failures from the reasoning defect already present.",
+      "applicability": "Applies when a task requires candidates satisfying multiple constraints and preliminary search results are accepted without evidence of coverage or eligibility. It does not apply when candidates have been independently validated, an explicitly partial answer is acceptable, or an access failure alone prevents otherwise sound research.",
+      "recovery_counterexample": "An incomplete initial search would not establish this mechanism if the next decision identified the missing coverage and verified eligibility before proceeding. No such recovery is shown here; the initial request to verify proximity did not itself establish that verification occurred.",
+      "review_status": "supported_with_localization_caveat"
+    },
+    {
+      "card_id": "E08",
+      "symptom": "The run returned a card name without establishing comparable all-time high and low prices for the full requested comparison set.",
+      "mechanism": "The official annotation identifies an early intent-to-plan mismatch: the requested price comparison became a ban-date investigation. That interpretation persisted into a narrowed price-retrieval scope that excluded the explicitly included reference card. The eventual timeout and unsupported selection were downstream consequences.",
+      "localization_rule": "Locate the earliest planning decision that changes the requested comparison and remains uncorrected in later work. A prerequisite lookup is not inherently a failure; it becomes diagnostic when the resulting plan persistently omits required candidates or constraints. Attribute the error to the component making that decision, not automatically to an orchestration role.",
+      "applicability": "Applies when a comparison request is converted into related factual research and the required comparison scope is never restored. It does not apply when the preliminary lookup is necessary and all requested candidates and measurement constraints are subsequently preserved.",
+      "recovery_counterexample": "An initial search surfaced a reprint's prices, but a later instruction redirected retrieval to the original-set printing. That was a corrective attempt, with no completed retrieval shown. It does not displace the earlier scope mismatch, which remained unresolved; the timeout likewise explains termination rather than the original misinterpretation.",
+      "review_status": "supported_with_localization_caveat"
+    },
+    {
+      "card_id": "E09",
+      "symptom": "Research stopped after reaching the official homepage, before the requested records and distinguishing flag were inspected. A final country answer appeared without supporting research in the visible trace.",
+      "mechanism": "An unrecovered policy-filter rejection interrupted the model call used to select the next action. The annotation describes this as a website access restriction, but the visible exception specifically identifies a model-service content filter; it does not establish a website denial.",
+      "localization_rule": "Locate the earliest unrecovered event that prevents continued evidence gathering. Distinguish an explicit service rejection from an earlier navigation error that was corrected and from an unsupported answer emitted afterward. Attribute the failure to the demonstrated boundary, rather than assuming the coordinating agent is responsible.",
+      "applicability": "Applies when a trace shows a policy rejection interrupting an essential continuation and no successful recovery follows. It does not apply when the rejection is retried successfully, sufficient evidence was already gathered, or the actual blocker is a demonstrated website access denial or ordinary navigation failure.",
+      "recovery_counterexample": "The initial search returned general results instead of the requested records, but a subsequent navigation reached the official homepage. That recovery makes the earlier detour insufficient to explain the terminal failure; the later policy rejection remained unresolved.",
+      "review_status": "supported_with_annotation_caveat"
+    },
+    {
+      "card_id": "E10",
+      "symptom": "The browsing workflow stopped before the linked paper and its supporting acknowledgment were verified; a final answer appeared afterward without visible source verification.",
+      "mechanism": "A policy filter classified the accumulated prompt as a jailbreak and rejected a model request during ledger updating. This was the earliest recorded unrecovered critical failure. The annotation associates it with the browsing response, but the trace does not establish which content triggered detection or prove an actual jailbreak attempt.",
+      "localization_rule": "Locate the first explicit rejection that interrupts execution without a demonstrated successful retry. Distinguish the triggering input, the component whose request failed, and later output gaps; do not assign responsibility solely from an agent label or traceback location.",
+      "applicability": "Applies when an explicit policy rejection interrupts an otherwise continuing retrieval workflow and no successful recovery is shown. It does not apply when the rejection is retried successfully, an earlier independent failure already prevents completion, or the only evidence is slow navigation or an unsupported answer.",
+      "recovery_counterexample": "Repeated scrolling was inefficient but continued advancing the viewport, so it was not an earlier terminal failure. The final answer after the exception does not demonstrate recovery because the trace shows no subsequent paper access or acknowledgment verification.",
+      "review_status": "supported_with_annotation_caveat"
+    }
+  ],
+  "cost": {
+    "attempts": 82,
+    "failed_attempts": 0,
+    "input_tokens": 1749914,
+    "output_tokens": 29192
+  },
+  "validation": {
+    "tests_passed": 33,
+    "audit_status": "passed"
+  },
+  "links": {
+    "report": "./experience-report.html"
+  }
+}

@@ -129,6 +129,9 @@ function setLanguage(next,{remember=false,keepPosition=false}={}){
  document.title=next==='en'?copy['page.title']||originalTitle:originalTitle;
  description.content=next==='en'?copy['page.description']||originalDescription:originalDescription;
  document.querySelectorAll('[data-language]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.language===next)));
+ document.querySelectorAll('[data-language-link]').forEach(link=>{
+  const target=new URL(link.href,location.href);target.searchParams.set('lang',next);link.href=target;
+ });
  renderMethod(activeMethod);
  renderCase(activeCase,true);
  if(remember){
